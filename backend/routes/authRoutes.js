@@ -3,9 +3,10 @@ const router = express.Router();
 const cors = require("cors");
 const { test, registerUser,loginUser } = require("../controllers/authControllers");
 const { initiatePayment ,capturePayment } = require("../controllers/paymentControllers");
+const sendEmail = require("../controllers/emailController");
 
 router.use(cors({
-  origin: 'https://pizzeria-gilt.vercel.app',
+  origin: ['http://localhost:5173' , 'https://oibsip-level-3.vercel.app' ,'https://pizzeria-gilt.vercel.app'],
   credentials: true, 
 }));
 
@@ -15,5 +16,6 @@ router.post("/login", loginUser);
 
 router.post('/payment/initiate', initiatePayment);
 router.post('/payment/capture', capturePayment);
+router.post('/email', sendEmail);
 
 module.exports = router;
